@@ -1,0 +1,103 @@
+#block-ting-extrasearch-toggle {
+  display: block;
+}
+
+.pane-ting-extrasearch-sort-form {
+  clear: both;
+  color: #959595;
+  float: left;
+  overflow: hidden;
+}
+
+.pane-ting-extrasearch-sort-form .form-item {
+  margin: 0;
+}
+
+.pane-ting-extrasearch-sort-form label {
+  display: inline;
+  margin-right: 5px;
+}
+
+.pane-ting-extrasearch-sort-form .description {
+  color: #bcbcbc;
+  text-align: right;
+}
+
+.pane-ting-extrasearch-records-per-page {
+  color: #959595;
+  float: right;
+  margin-left: 20px;
+  overflow: hidden;
+}
+
+.pane-ting-extrasearch-records-per-page a {
+  margin-left: 10px;
+  padding-right: 10px;
+  border-right: 1px solid #006681;
+  text-decoration: underline;
+}
+
+.pane-ting-extrasearch-records-per-page a.selected {
+  font-weight: bold;
+  color: #006681;
+  text-decoration: none;
+}
+
+.pane-ting-extrasearch-records-per-page a:last-child {
+  border-right: none;
+}
+
+.pane-ting-extrasearch {
+  float: right;
+  width: 33.33333%;
+  margin-right: 0%;
+  margin-left: -33.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  text-align: right;
+}
+
+.pane-ting-extrasearch .ting-search-amount-block {
+  color: #959595;
+}
+
+.pane-ting-extrasearch-search-display-extended-query {
+  float: left;
+  width: 66.66667%;
+  margin-left: 0%;
+  margin-right: -66.66667%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  *behavior: url("/profiles/ding2/themes/ddbasic/scripts/boxsizing.htc");
+  _display: inline;
+  _overflow: hidden;
+  _overflow-y: visible;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.pane-ting-extrasearch-search-display-extended-query #search-query-display {
+  margin: 0;
+}
+
+.pane-ting-extrasearch-search-display-extended-query #search-query-display #search-query-label {
+  color: #959595;
+}
+
+.pane-ting-extrasearch-search-display-extended-query #search-query-display #search-query-string {
+  color: black;
+}
