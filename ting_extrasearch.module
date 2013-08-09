@@ -31,7 +31,7 @@ function ting_extrasearch_ctools_plugin_api($module, $api) {
  * Temporary hack to alter titles.
  */
 function ting_extrasearch_menu_alter(&$items) {
-  $items['search/tingextra']['title'] = 'Extra Data well';
+  $items['search/tingextra']['title'] = t('Extra Data well');
   $items['search/tingextra/%menu_tail']['title'] = 'Extra Data well';
 }
 
