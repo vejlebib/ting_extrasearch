@@ -46,7 +46,7 @@
   Drupal.behaviors.toggleSort = {
     attach: function(context, settings) {
       $('#edit-sort').change(function() {
-        $('#ting-search-sort-form').trigger("submit");
+        $('#ting-extrasearch-sort-form').trigger("submit");
       });
     }
   };
