@@ -67,8 +67,8 @@ function ting_extrasearch_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-1';
     $pane->panel = 'left_sidebar';
-    $pane->type = 'search_backends';
-    $pane->subtype = 'search_backends';
+    $pane->type = 'extrasearch_backends';
+    $pane->subtype = 'extrasearch_backends';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array();
@@ -127,15 +127,11 @@ function ting_extrasearch_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-4';
     $pane->panel = 'main_content';
-    $pane->type = 'search_result_count';
-    $pane->subtype = 'search_result_count';
+    $pane->type = 'extrasearch_result_count';
+    $pane->subtype = 'extrasearch_result_count';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array(
-      'context' => 'argument_string_1',
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
+    $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -149,8 +145,8 @@ function ting_extrasearch_default_page_manager_handlers() {
     $pane = new stdClass();
     $pane->pid = 'new-5';
     $pane->panel = 'main_content';
-    $pane->type = 'search_per_page';
-    $pane->subtype = 'search_per_page';
+    $pane->type = 'extrasearch_per_page';
+    $pane->subtype = 'extrasearch_per_page';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
@@ -173,7 +169,7 @@ function ting_extrasearch_default_page_manager_handlers() {
     $pane->pid = 'new-6';
     $pane->panel = 'main_content';
     $pane->type = 'block';
-    $pane->subtype = 'ting_search-sort-form';
+    $pane->subtype = 'ting_extrasearch-sort-form';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
