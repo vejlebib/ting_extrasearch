@@ -8,7 +8,6 @@
   $.TingExtendedForm = {};
   $.TingExtendedForm.showExtended = false;
 
-
   Drupal.behaviors.clearExtendForm = {
       attach:function(context, settings) {
           $('#extend-form-clear', context).click(function() {
@@ -47,7 +46,7 @@
   Drupal.behaviors.toggleSort = {
     attach: function(context, settings) {
       $('#edit-sort').change(function() {
-        $('#ting-extrasearch-sort-form').trigger("submit");
+        $('#ting-search-sort-form').trigger("submit");
       });
     }
   };
@@ -78,5 +77,5 @@
     }
   };
 
-} (jQuery));
+}(jQuery));
 
