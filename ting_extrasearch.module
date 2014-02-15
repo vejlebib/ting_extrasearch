@@ -605,34 +605,53 @@ function extrasearch_extend_content() {
   return drupal_get_form('extrasearch_extend_form');
 }
 
+
 /**
- * Create form for sorting search result
- */
+* Create form for sorting search result.
+*/
 function ting_extrasearch_sort_form($form_state) {
+  $form = array();
+
   $form['sort'] = array(
-    '#title' => t('Sort by:'),
     '#type' => 'select',
-    '#default_value' => isset($_GET['sort']) ? check_plain($_GET['sort']) : '',
-    '#options' => array(
-      '' => t('Ranking'),
-      'title_ascending' => t('Title (Ascending)'),
-      'title_descending' => t('Title (Descending)'),
-      'creator_ascending' => t('Creator (Ascending)'),
-      'creator_descending' => t('Creator (Descending)'),
-      'date_ascending' => t('Date (Ascending)'),
-      'date_descending' => t('Date (Descending)')
-    ),
-    '#description' => t('Set sort order for extra search result'),
+    '#default_value' => isset($_GET['sort']) ? check_plain($_GET['sort']) : variable_get('ting_extrasearch_default_sort', ''),
+    '#options' => ting_extrasearch_sort_options(),
   );
   $form['submit'] = array(
     '#type' => 'submit',
     '#value' => t('Sort'),
     '#states' => array(
-      'visible' => array(':input[name="op"]' => array('value' => '', ), ),
+      'visible' => array(':input[name="op"]' => array('value' => '')),
     ),
   );
   return $form;
 }
+
+/**
+* Set default sort options.
+*
+* @return array
+* Returns an array of sort options.
+*/
+function ting_extrasearch_sort_options() {
+  $options = array(
+    '' => t('Ranking'),
+    'title_ascending' => t('Title (Ascending)'),
+    'title_descending' => t('Title (Descending)'),
+    'creator_ascending' => t('Creator (Ascending)'),
+    'creator_descending' => t('Creator (Descending)'),
+    'date_ascending' => t('Date (Ascending)'),
+    'date_descending' => t('Date (Descending)'),
+  );
+
+  // Add label to the front of the options.
+  foreach ($options as $key => $option) {
+    $options[$key] = t('Sort by: !sort', array('!sort' => $option));
+  }
+
+  return $options;
+}
+
 
 /**
  * Process submitted data for sorting order form
