@@ -960,8 +960,6 @@ function ting_do_extrasearch($query, $page = 1, $results_per_page = 10, $options
   //my guess is no..
   $search_result = ting_execute_cache($request);
 
-
-
   // Replace collections with proper TingCollection objects.
   if ($search_result && is_array($search_result->collections)) {
     $ids = array();
@@ -989,8 +987,62 @@ function ting_extrasearch_form_ting_admin_ting_settings_alter(&$form, &$form_sta
     '#default_value' => variable_get('ting_extrasearch_profile', ''),
   );
   $form['#submit'][] = 'ting_extrasearch_submit_function';
+
+  // Add update button to merge in any extra well types only found in the extrasearch profile
+  $form['ting']['extra_type_update'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Update from datawell (Extrasearch profile)'),
+    '#description' => t('Merge types from the extrasearch profile into list of known well types.'),
+  );
+
+  $form['ting']['extra_type_update']['update'] = array(
+    '#type' => 'submit',
+    '#value' => t('Update'),
+    '#submit' => array('ting_admin_extrasearch_update_types'),
+  );
+
 }
 
 function ting_extrasearch_submit_function($delta = '', $edit = array()){
-    variable_set('ting_extrasearch_profile', $edit['values']['ting_extrasearch_profile']);
+  variable_set('ting_extrasearch_profile', $edit['values']['ting_extrasearch_profile']);
+}
+
+/**
+ * Submit handler. Updates the list of known well types with additional types from extrasearch profile.
+ */
+function ting_admin_extrasearch_update_types($form, &$form_state) {
+  _tingextra_fetch_well_types();
+}
+
+/**
+* Fetch known types from the datawell (from profile defined in ting_extrasearch).
+*/
+function _tingextra_fetch_well_types() {
+  // Get a list of types by executing a null query and look at the facets
+  // result.
+  $options = array(
+    'facets' => array('facet.type'),
+    'numFacets' => 99,
+    'reply_only' => TRUE,
+    'sort' => 'random',
+  );
+  module_load_include('client.inc', 'ting');
+
+  // * (star search) fails - use "n" and hope to get all facets still
+  $result = ting_do_extrasearch("n", 0, 0, $options);
+
+  $types = array();
+  foreach ($result->facets['facet.type']->terms as $term => $count) {
+    $types[drupal_strtolower($term)] = $count;
+  }
+
+  // Merge any retrieved types with the exising list of well types
+  if (!empty($types)) {
+    $existing_types = variable_get('ting_well_types', array());
+
+    // Merge. Values from $existing_types is kept, only extra keys in $types will be added.
+    $types = $existing_types + $types;
+
+    variable_set('ting_well_types', $types);
+  }
 }
