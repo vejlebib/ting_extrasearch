@@ -101,3 +101,7 @@
 .pane-ting-extrasearch-search-display-extended-query #search-query-display #search-query-string {
   color: black;
 }
+
+.page-search-tingextra .pane-search-result .search-results .list .search-result--availability {
+  display: none;
+}
