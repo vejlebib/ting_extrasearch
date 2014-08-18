@@ -994,6 +994,20 @@ function ting_extrasearch_form_ting_covers_plus_admin_default_covers_form_alter(
 
 }
 
+/*
+ * Adding extra config field to settings at admin/config/ting/settings
+ */
+function ting_extrasearch_form_ting_admin_ting_settings_alter(&$form, &$form_state, $form_id) {
+  $form['ting']['ting_extrasearch_profile'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Search profile (EXTRA - for additional search pane)'),
+    '#description' => t('Extra Profile name, otherwise with same settings as main search profile'),
+    '#default_value' => variable_get('ting_extrasearch_profile', ''),
+  );
+
+  $form['#submit'][] = 'ting_extrasearch_submit_function';
+}
+
 function ting_extrasearch_submit_function($delta = '', $edit = array()){
   variable_set('ting_extrasearch_profile', $edit['values']['ting_extrasearch_profile']);
 }
